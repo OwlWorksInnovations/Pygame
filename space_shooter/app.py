@@ -93,6 +93,12 @@ while running:
     if len(enemies) > 0 and pygame.Vector2(player_pos.x, player_pos.y).distance_to(pygame.Vector2(enemies[0].x, enemies[0].y)) < 50:
         running = False
 
+    for bullet in bullets:
+        for enemy in enemies:
+            if bullet.distance_to(enemy) < 20:
+                bullets.remove(bullet)
+                enemies.remove(enemy)
+
     current_frame += 1
     if target_frame == current_frame:
         print(f'Bullets in scene: {bullet_count}')
