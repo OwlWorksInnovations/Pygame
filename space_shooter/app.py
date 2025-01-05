@@ -93,6 +93,10 @@ while running:
     if len(enemies) > 0 and pygame.Vector2(player_pos.x, player_pos.y).distance_to(pygame.Vector2(enemies[0].x, enemies[0].y)) < 50:
         running = False
 
+    # prevents player from exiting screen boundaries
+    player_pos.x = max(0, min(player_pos.x, screen_width))
+    player_pos.y = max(0, min(player_pos.y, screen_height))
+
     for bullet in bullets:
         for enemy in enemies:
             if bullet.distance_to(enemy) < 20:
