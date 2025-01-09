@@ -11,6 +11,8 @@ money = 20
 
 can_add_money = time.time()
 add_money_delay = 1
+multiplier = 1
+price = 25
 
 class Button:
     def __init__(self, text, x, y, width, height, text_color, button_color):
@@ -52,11 +54,18 @@ while running:
     pygame.draw.circle(screen, "white", (screen.get_width() / 2, screen.get_height() / 2), 40)
 
     # Button
-    button = Button("Buy Cat Food", 100, 50, 200, 50, "black", "white")
-    button.render(screen)
-    if button.is_clicked(pygame.mouse.get_pos()) and time.time() > can_add_money:
+    add_money_btn = Button("Buy Cat Food", 100, 50, 200, 50, "black", "white")
+    add_money_btn.render(screen)
+    if add_money_btn.is_clicked(pygame.mouse.get_pos()) and time.time() > can_add_money:
         can_add_money = time.time() + add_money_delay
-        money += 1
+        money += 1 * multiplier
+
+    upgrade_btn = Button("Upgrade Cat", 100, 150, 200, 50, "black", "white")
+    upgrade_btn.render(screen)
+    if upgrade_btn.is_clicked(pygame.mouse.get_pos()) and money >= price:
+        money -= price
+        multiplier += 1
+        price *= multiplier
 
     # Labels
     # Money
