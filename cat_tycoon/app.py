@@ -67,6 +67,11 @@ while running:
         multiplier += 1
         price *= multiplier
 
+    cheat_btn = Button("Cheat Money", 100, 250, 200, 50, "black", "white")
+    cheat_btn.render(screen)
+    if cheat_btn.is_clicked(pygame.mouse.get_pos()):
+        money += 1000000
+
     # Labels
     # Money
     money_text = str(money)
