@@ -83,4 +83,10 @@ while running:
     # Render game above
     pygame.display.flip()
 
+    # Add money over time
+    if time.time() > can_add_money:
+        can_add_money = time.time() + add_money_delay
+        money += 1 * multiplier
+
 running = False
+
