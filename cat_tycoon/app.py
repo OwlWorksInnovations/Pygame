@@ -8,6 +8,7 @@ running = True
 player_speed = 1000
 
 money = 20
+happiness = 50
 
 can_add_money = time.time()
 add_money_delay = 1
@@ -67,10 +68,10 @@ while running:
         multiplier += 1
         price *= multiplier
 
-    cheat_btn = Button("Cheat Money", 100, 250, 200, 50, "black", "white")
-    cheat_btn.render(screen)
-    if cheat_btn.is_clicked(pygame.mouse.get_pos()):
-        money += 1000000
+    play_btn = Button("Play With Cat", 100, 250, 200, 50, "black", "white")
+    play_btn.render(screen)
+    if play_btn.is_clicked(pygame.mouse.get_pos()) and happiness < 100:
+        happiness += 10
 
     # Labels
     # Money
@@ -88,5 +89,13 @@ while running:
         can_add_money = time.time() + add_money_delay
         money += 1 * multiplier
 
+    # Decrease happiness over time
+    if time.time() % 1 < 0.5:
+        happiness -= 0.1
+    else:
+        happiness += 0.1
+    happiness = max(0, min(happiness, 100))
+
 running = False
+
 
